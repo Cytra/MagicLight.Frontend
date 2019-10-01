@@ -1,0 +1,127 @@
+<div class="container">
+  <div class="checkout sec-padding">
+      <div fxLayout="row wrap" class="">
+          <div class="billing-details  pr-15" fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50">
+            <div class="header-title">
+                <h2>Pristatymo detalės</h2>
+            </div>
+              <form fxLayout="row wrap" #checkoutForm="ngForm" (ngSubmit)="checkout(checkoutForm.value)">  
+                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                      <mat-form-field class="w-100">
+                          <input matInput placeholder="Vardas (privaloma)" #name="ngModel" ngModel name="name" required>
+                          <mat-error *ngIf="name.invalid">Privaloma</mat-error>
+                        </mat-form-field>
+                  </div>
+                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                      <mat-form-field class="w-100">
+                          <input matInput placeholder="Pavardė (privaloma)" #email="ngModel" ngModel name="email" required>
+                          <mat-error *ngIf="email.invalid">Privaloma</mat-error>
+                        </mat-form-field>
+                  </div>
+                  <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                      <mat-form-field class="w-100">
+                          <input matInput placeholder="Įmonės pavadinimas (neprivaloma)" #subject="ngModel" ngModel name="subject">
+                        </mat-form-field>
+                  </div>
+                  <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                      <mat-form-field class="w-100">
+                          <input matInput placeholder="Adresas" #address="ngModel" ngModel name="address">
+                          <mat-error *ngIf="address.invalid">Privaloma</mat-error>
+                        </mat-form-field>
+                  </div>
+                  <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                      <mat-form-field class="w-100">
+                          <input matInput placeholder="Miestas" #town="ngModel" ngModel name="town/city">
+                          <mat-error *ngIf="town.invalid">Privaloma</mat-error>
+                        </mat-form-field>
+                  </div>
+                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                      <mat-form-field class="w-100">
+                          <input matInput placeholder="Šalis (prilavoma)" #state="ngModel" ngModel name="state" required>
+                          <mat-error *ngIf="state.invalid">Privaloma</mat-error>
+                        </mat-form-field>
+                  </div>
+                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                      <mat-form-field class="w-100">
+                          <input matInput placeholder="Zip kodas (privaloma)" #postcode="ngModel" ngModel name="postcode" required>
+                          <mat-error *ngIf="postcode.invalid">Privaloma</mat-error>
+                        </mat-form-field>
+                  </div>
+                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                      <mat-form-field class="w-100">
+                          <input matInput placeholder="Elektroninias paštas (privaloma)" #email="ngModel" ngModel name="email" required>
+                          <mat-error *ngIf="email.invalid">Privaloma</mat-error>
+                        </mat-form-field>
+                  </div>
+                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                      <mat-form-field class="w-100">
+                          <input matInput placeholder="Telefonas (privaloma)" #phone="ngModel" ngModel name="phone" required>
+                          <mat-error *ngIf="phone.invalid">Privaloma</mat-error>
+                        </mat-form-field>
+                  </div>
+                  <div class="add-info">
+                    <h3>Papildoma informacija</h3>
+                    <p class="text-muted">papildoma informacija (neprivaloma)</p>
+
+                  </div>
+                  <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                      <mat-form-field class="w-100">
+                          <textarea placeholder="Post content" matInput rows="4" ngModel name="content"></textarea>
+                        </mat-form-field>
+                  </div>
+                  <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                      <button class="btn-project" mat-raised-button color="accent" type="submit" >Užsakyti</button>
+                    </div>
+                  </form>
+          </div>
+          <div class="mainOrder-wrapper pl-15" fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50">
+            <div class="main-order " >
+              <div class="order-box">
+                  <div class="title-box">
+                      <div>Produktas <span class="tl-amount"> Viso</span></div>
+                  </div>
+                  <ul class="price-list" *ngIf='buyProducts.length'>
+                    <li *ngFor="let item of buyProducts">
+                       {{ item.product.name }} × {{ item.quantity }}
+                      <span>
+                       {{ item.product.price * item.quantity | currency:productService?.currency:'symbol' }}
+                        </span>
+                    </li>
+                </ul>
+                <ul class="quantity" *ngIf='buyProducts.length <= 0'>
+                  <li class="empty-checkout"> Krepšelyje nėra produktų </li>
+                 </ul>
+                <ul class="total-amount">
+                  <li>
+                    Už prekes <span class="amount">{{ getTotal() | async | currency:productService?.currency:'symbol'}}</span>
+                  </li>
+                  <li *ngIf='buyProducts.length'>
+                    Pristatymas
+                   <div class="shipping">
+                      <div class="shopping-option">
+                        <mat-radio-group>
+                          <mat-radio-button *ngFor="let payment of payments" [value]="payment">{{payment}}</mat-radio-button>
+                        </mat-radio-group>
+                      </div>
+
+                   </div>
+                  </li>
+              </ul>
+              <ul class="total">
+                <li>Viso <span class="count">{{ getTotal() | async | currency:productService?.currency:'symbol'}}</span></li>
+            </ul>
+            <div class="paymentFinal">
+              <mat-radio-group>
+                <mat-radio-button fxLayout="column" *ngFor="let payment of paymantWay" [value]="payment">{{payment}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <!-- <div class="order">
+              <button class="btn-project" mat-raised-button color="accent" type="submit" (click)="order()">Užsakyti</button>
+            </div> -->
+               </div>
+          </div>
+          </div>
+
+       </div>
+    </div>
+</div>
