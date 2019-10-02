@@ -41,8 +41,6 @@ export class CheckoutComponent implements OnInit {
   public checkout(formValues){
     var cartProducts: any;
     this.cartItems.subscribe(products => cartProducts = products);
-    var price = 0 ;
-    this.cartService.getTotalAmount().subscribe( x => price = x);
     var productString = "";
 
     cartProducts.forEach( item => {
@@ -66,7 +64,7 @@ export class CheckoutComponent implements OnInit {
       phone : formValues.phone,
       addInfo : formValues.content,
       products : productString,
-      price : price,
+      price : this.amount,
       shipping : this.paymentWaySelection,
       willpay : this.paymentSelection,
  
