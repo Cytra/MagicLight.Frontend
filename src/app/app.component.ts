@@ -7,7 +7,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'MagicLightV6';
+  title = 'MagicLight';
 
   constructor(private spinner: NgxSpinnerService) {}
 

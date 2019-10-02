@@ -6,18 +6,18 @@
                 <h2>Pristatymo detalės</h2>
             </div>
               <form fxLayout="row wrap" #checkoutForm="ngForm" (ngSubmit)="checkout(checkoutForm.value)">  
-                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                  <div  xFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
                       <mat-form-field class="w-100">
                           <input matInput placeholder="Vardas (privaloma)" #name="ngModel" ngModel name="name" required>
                           <mat-error *ngIf="name.invalid">Privaloma</mat-error>
                         </mat-form-field>
                   </div>
-                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                  <!-- <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
                       <mat-form-field class="w-100">
-                          <input matInput placeholder="Pavardė (privaloma)" #email="ngModel" ngModel name="email" required>
+                          <input matInput placeholder="El-Paštas (privaloma)" #email="ngModel" ngModel name="email" required>
                           <mat-error *ngIf="email.invalid">Privaloma</mat-error>
                         </mat-form-field>
-                  </div>
+                  </div> -->
                   <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
                       <mat-form-field class="w-100">
                           <input matInput placeholder="Įmonės pavadinimas (neprivaloma)" #subject="ngModel" ngModel name="subject">
@@ -99,8 +99,8 @@
                     Pristatymas
                    <div class="shipping">
                       <div class="shopping-option">
-                        <mat-radio-group>
-                          <mat-radio-button *ngFor="let payment of payments" [value]="payment">{{payment}}</mat-radio-button>
+                        <mat-radio-group [(ngModel)]="paymentSelection">
+                          <mat-radio-button *ngFor="let payment of payments" [(value)]="payment">{{payment}}</mat-radio-button>
                         </mat-radio-group>
                       </div>
 
@@ -111,8 +111,8 @@
                 <li>Viso <span class="count">{{ getTotal() | async | currency:productService?.currency:'symbol'}}</span></li>
             </ul>
             <div class="paymentFinal">
-              <mat-radio-group>
-                <mat-radio-button fxLayout="column" *ngFor="let payment of paymantWay" [value]="payment">{{payment}}</mat-radio-button>
+              <mat-radio-group [(ngModel)]="paymentWaySelection">
+                <mat-radio-button fxLayout="column" *ngFor="let payment of paymantWay" [(value)]="payment">{{payment}}</mat-radio-button>
               </mat-radio-group>
             </div>
             <!-- <div class="order">

@@ -10,56 +10,56 @@
          <li>
             <i class="material-icons">home </i>
             <br>
-          <h4>Address</h4>
+          <h4>Adresas</h4>
           <br>
-         <p class="text-muted">123 Main Street, Anytown, CA 12345 – USA</p>
+         <p class="text-muted">Savanorių pr. 22 Vilnius, LT-03166</p>
          </li>
          <li>
             <i class="material-icons">call </i>
             <br>
-          <h4>Phone</h4>
+          <h4>Telefonas</h4>
           <br>
-          <p class="text-muted">123 Main Street, Anytown, CA 12345 – USA</p>
+          <p class="text-muted">+370 (687) 88976</p>
          </li>
          <li>
             <i class="material-icons">email </i>
             <br>
-          <h4>Email</h4>
+          <h4>El-paštas</h4>
           <br>
-          <p class=" text-muted text-muted">123 Main Street, Anytown, CA 12345 – USA</p>
+          <p class=" text-muted text-muted">info@magiclight.lt</p>
          </li>
        </ul>
     </div>
     <div fxFlex="100"   fxFlex.gt-sm="60" class="contact-form">
         <div class="title">
-            <h3>Contact us</h3>
+            <h3>Parašykite mums</h3>
         </div>
-        <form fxLayout="row wrap">
+        <form fxLayout="row wrap" #contactUs="ngForm" (ngSubmit)="send(contactUs.value)">
           <div  fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
               <mat-form-field class="w-100">
-                  <input matInput placeholder="Your Name (required)" #name="ngModel" ngModel name="name" required>
-                  <mat-error *ngIf="name.invalid">Please enter a valid message</mat-error>
+                  <input matInput placeholder="Vardas (privaloma)" #name="ngModel" ngModel name="name" required>
+                  <mat-error *ngIf="name.invalid">Įveskite pasirinkimą</mat-error>
                 </mat-form-field>
           </div>
           <div  fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
               <mat-form-field class="w-100">
-                  <input matInput placeholder="Your Email (required)" #email="ngModel" ngModel name="email" required>
-                  <mat-error *ngIf="email.invalid">Please enter a valid message</mat-error>
+                  <input matInput placeholder="Elektroninis paštas (privaloma)" #email="ngModel" ngModel name="email" required>
+                  <mat-error *ngIf="email.invalid">Įveskite pasirinkimą</mat-error>
                 </mat-form-field>
           </div>
           <div  fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
               <mat-form-field class="w-100">
-                  <input matInput placeholder="Subject" #subject="ngModel" ngModel name="subject" required>
-                  <mat-error *ngIf="subject.invalid">Please enter a valid message</mat-error>
+                  <input matInput placeholder="Tema" #subject="ngModel" ngModel name="subject" required>
+                  <mat-error *ngIf="subject.invalid">Įveskite pasirinkimą</mat-error>
                 </mat-form-field>
           </div>
           <div  fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
               <mat-form-field class="w-100">
-                  <textarea placeholder="Post content" matInput rows="6" ngModel name="content" required></textarea>
+                  <textarea placeholder="Žinutė" matInput rows="6" ngModel name="content" required></textarea>
                 </mat-form-field>
           </div>
           <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
-              <button class="btn-project" mat-raised-button color="accent" type="submit">Send</button>
+              <button class="btn-project" mat-raised-button color="accent" type="submit">Siųsti</button>
             </div>
           </form>
     </div>
