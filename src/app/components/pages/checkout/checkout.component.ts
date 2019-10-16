@@ -4,9 +4,11 @@ import { Observable, of } from 'rxjs';
 import { CartItem } from 'src/app/modals/cart-item';
 import { ProductService } from '../../shared/services/product.service';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
+import {Router} from '@angular/router';
 
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as firebase from 'firebase/app';
 
 @Component({
@@ -26,7 +28,12 @@ export class CheckoutComponent implements OnInit {
   payments: string[] = ['Kurjeriu', 'Atsimsiu parduotuvėje'];
   paymantWay: string[] = ['Sumokėti kurjeriui', 'Mokėsiu parduotuvėje'];
 
-  constructor(private cartService: CartService, public productService: ProductService, public afAuth: AngularFireAuth, private fun: AngularFireFunctions) {}
+  constructor(private cartService: CartService, 
+    public productService: ProductService, 
+    public afAuth: AngularFireAuth, 
+    private fun: AngularFireFunctions, 
+    private router:Router, 
+    public snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.cartItems = this.cartService.getItems();
@@ -47,7 +54,7 @@ export class CheckoutComponent implements OnInit {
       productString += item.product.ProductNumber + " ";
       productString += item.product.category + " ";
       productString += item.product.name + " ";
-      productString += item.product.price + " ";
+      productString += item.product.Gro + " ";
       productString += item.quantity + " ";
       productString += " | "
     })
@@ -64,10 +71,14 @@ export class CheckoutComponent implements OnInit {
       phone : formValues.phone,
       addInfo : formValues.content,
       products : productString,
-      price : this.amount,
+      GrossPrice : this.amount,
       shipping : this.paymentWaySelection,
       willpay : this.paymentSelection,
  
     }).subscribe();
+
+    this.router.navigateByUrl('/');
+    status = 'success';
+    this.snackBar.open("Užsakymas išsiųstas", '×', { panelClass: [status], verticalPosition: 'top', duration: 5000 });
   }
 }

@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 
 import 'hammerjs';
 
@@ -48,9 +49,9 @@ const config = {
     FormsModule,
     AngularFireModule.initializeApp(config),
     AngularFireAuthModule,
-    AngularFireFunctionsModule
+    AngularFireFunctionsModule,
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

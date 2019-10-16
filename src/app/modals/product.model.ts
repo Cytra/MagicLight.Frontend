@@ -10,6 +10,7 @@ export class Product {
   id?: number;
   name?: string;
   price?: number;
+  GrossPrice?: number;
   salePrice?: number;
   discount?: number;
   pictures?: string;
@@ -30,6 +31,7 @@ export class Product {
     id?: number,
     name?: string,
     price?: number,
+    GrossPrice?: number,
     salePrice?: number,
     discount?: number,
     pictures?: string,
@@ -49,6 +51,7 @@ export class Product {
     this.id = id;
     this.name = name;
     this.price = price;
+    this.GrossPrice = GrossPrice;
     this.salePrice = salePrice;
     this.discount = discount;
     this.pictures = pictures;

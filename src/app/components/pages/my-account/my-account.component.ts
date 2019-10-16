@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../shared/services/auth.service';
+import {User} from '../../../modals/User.model';
 
 @Component({
   selector: 'app-my-account',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor() { }
+  user:User;
+
+  constructor(public auth: AuthService) { }
 
   ngOnInit() {
   }
+
+  loginWithGoogle(){
+    this.auth.googleSignIn();
+  }
+
+  loginwithFacebook(){
+    this.auth.facebookSignIn()
+  }
+
+  
 
 }

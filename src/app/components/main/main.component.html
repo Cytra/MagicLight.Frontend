@@ -17,11 +17,14 @@
                      </span>
                   <div fxLayout="row" class="welcome-message">
                   </div>
-                  <!-- <div class="widgets-left" fxLayout="row">
-                    <div class="widget-text">
-                        <a fxShow="false" fxShow.gt-xs [routerLink]="['/pages/my-account']" routerLinkActive="router-link-active" ><mat-icon>person</mat-icon>My Account</a>
+                  <div class="widgets-left" fxLayout="row">
+                    <div class="widget-text" *ngIf="user == null">
+                      <a fxShow="false" fxShow.gt-xs [routerLink]="['/pages/my-account']" routerLinkActive="router-link-active" ><mat-icon>person</mat-icon>Prisijungti</a>
                     </div>
-                  </div> -->
+                    <div class="widget-text" *ngIf="user != null"> 
+                      <a  fxShow="false" fxShow.gt-xs  [routerLink]="['/']" routerLinkActive="router-link-active" (click)="logout()"><mat-icon>person</mat-icon>Atsijungti {{user.email}}</a>
+                    </div>
+                  </div>
             </mat-toolbar-row>
           </mat-toolbar>
       <app-header></app-header>

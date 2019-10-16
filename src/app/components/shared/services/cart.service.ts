@@ -32,6 +32,14 @@ public observer   :  Subscriber<{}>;
     return <Observable<CartItem[]>>itemsStream;
   }
 
+  // Removed in cart
+public removeFromCart(item: CartItem) {
+  if (item === undefined) return false;
+    const index = products.indexOf(item);
+    products.splice(index, 1);
+    localStorage.setItem("cartItem", JSON.stringify(products));
+}
+
    // Add to cart
    public addToCart(product: Product, quantity: number) {
     let message, status;
@@ -45,7 +53,7 @@ public observer   :  Subscriber<{}>;
            products[index]['kiekis'] = qty;
            message = 'Produktas ' + product.name + ' buvo pridėtas prie krepšelio.';
            status = 'success';
-           this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
+           this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 5000 });
          }
          return true;
        }
@@ -57,7 +65,7 @@ public observer   :  Subscriber<{}>;
       products.push(item);
       message = 'Produktas ' + product.name + ' buvo pridėtas prie krepšelio.';
       status = 'success';
-      this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
+      this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 5000 });
   }
 
      localStorage.setItem("cartItem", JSON.stringify(products));
@@ -72,7 +80,7 @@ public calculateStockCounts(product: CartItem, quantity): CartItem | Boolean {
   let stock = product.product.stock;
   if(stock < qty) {
     // this.toastrService.error('You can not add more items than available. In stock '+ stock +' items.');
-    this.snackBar.open('You can not choose more items than available. In stock ' + stock + ' items.', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+    this.snackBar.open('You can not choose more items than available. In stock ' + stock + ' items.', '×', { panelClass: 'error', verticalPosition: 'top', duration: 5000 });
     return false
   }
   return true
@@ -82,19 +90,13 @@ public calculateStockCounts(product: CartItem, quantity): CartItem | Boolean {
 
 
 
-// Removed in cart
-public removeFromCart(item: CartItem) {
-  if (item === undefined) return false;
-    const index = products.indexOf(item);
-    products.splice(index, 1);
-    localStorage.setItem("cartItem", JSON.stringify(products));
-}
+
 
 // Total amount
 public getTotalAmount(): Observable<number> {
   return this.cartItems.pipe(map((product: CartItem[]) => {
     return products.reduce((prev, curr: CartItem) => {
-      return prev + curr.product.price * curr.quantity;
+      return prev + curr.product.GrossPrice * curr.quantity;
     }, 0);
   }));
 }

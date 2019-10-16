@@ -21,7 +21,7 @@
            <div *ngFor="let item of shoppingCartItems"  class="mat-row">
               <div class="mat-cell"><img [src]="item.product.pictures"></div>
               <div class="mat-cell"><a  class="product-name">{{item.product.name}}</a></div>
-              <div class="mat-cell price">{{item.product.price | number : '1.2-2'}}</div>
+              <div class="mat-cell price">{{item.product.GrossPrice | number : '1.2-2'}}</div>
               <div class="mat-cell text-muted">
                  <div fxLayout="row" fxLayout.xs="column"  class="text-muted">
                     <div fxLayout="row" fxLayoutAlign="center start">
@@ -41,7 +41,7 @@
                        </div> -->
                  </div>
               </div>
-              <div class="mat-cell total">{{item.product.price * item.quantity | number : '1.2-2' }}</div>
+              <div class="mat-cell total">{{item.product.GrossPrice * item.quantity | number : '1.2-2' }}</div>
               <div class="mat-cell text-center">
                  <div class="p-1">
                     <mat-icon (click)="removeItem(item)">close</mat-icon>

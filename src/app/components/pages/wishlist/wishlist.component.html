@@ -28,7 +28,7 @@
     <div *ngFor="let item of wishlistItems"  class="mat-row">
       <div class="mat-cell"><img [src]="item.pictures"></div>
       <div class="mat-cell"><a  class="product-name">{{item.name}}</a></div>
-      <div class="mat-cell price">{{item.price | number : '1.2-2'}}</div>
+      <div class="mat-cell price">{{item.GrossPrice | number : '1.2-2'}}</div>
 
       <div class="mat-cell text-center">
         <div class="p-1">
